@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">My Application1210</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="loginbtn">Login</string>
+    <string name="loginreg">Register</string>
+    <string name="action_settings_text">Settings</string>
+    <string name="action_logout_text">Logout</string>
+    <string name="have_a_acc">Already have an account?</string>
+    <string name="passvali">Passwaord again</string>
+    <string name="date">Date</string>
+    <string name="back">Back</string>
+    <string name="go">Go!</string>
+    <string name="addNew">New event</string>
+    <string name="type">Type:</string>
+    <string name="IE">Incime or expense:</string>
+    <string name="amount">Amount:</string>
+    <string name="just_a_blank" />
+    <string name="Add">Add</string>
+</resources>

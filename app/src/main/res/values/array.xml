@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="add_IE">
+        <item>Income</item>
+        <item>Expence</item>
+    </array>
+    <array name="add_expenselist">
+        <item>Food</item>
+        <item>Clothing</item>
+        <item>Housing</item>
+        <item>Transportation</item>
+        <item>Education</item>
+        <item>Entertainment</item>
+        <item>Others</item>
+    </array>
+    <array name="add_incomelist">
+        <item>Salary</item>
+        <item>Allowance</item>
+        <item>Award/Bonus</item>
+        <item>Others</item>
+    </array>
+</resources>
