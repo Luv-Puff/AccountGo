@@ -14,14 +14,15 @@
     <string name="action_settings_text">Settings</string>
     <string name="action_logout_text">Logout</string>
     <string name="have_a_acc">Already have an account?</string>
-    <string name="passvali">Passwaord again</string>
+    <string name="passvali">Password again</string>
     <string name="date">Date</string>
     <string name="back">Back</string>
     <string name="go">Go!</string>
     <string name="addNew">New event</string>
     <string name="type">Type:</string>
-    <string name="IE">Incime or expense:</string>
+    <string name="IE">Income or expense:</string>
     <string name="amount">Amount:</string>
     <string name="just_a_blank" />
     <string name="Add">Add</string>
+    <string name="Item_name">Item name:</string>
 </resources>

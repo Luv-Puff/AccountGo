@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
-
     <EditText
         android:id="@+id/regemail"
         android:layout_width="wrap_content"
@@ -64,4 +63,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regpwd"
         android:importantForAutofill="no"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
