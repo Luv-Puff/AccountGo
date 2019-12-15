@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         main_Calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                i1 = i1+1;
                 String date = i+"/"+i1+"/"+i2;
                 maindate.setText(date);
 

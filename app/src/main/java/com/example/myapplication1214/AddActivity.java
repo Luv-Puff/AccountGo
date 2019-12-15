@@ -124,19 +124,7 @@ public class AddActivity extends AppCompatActivity {
                                     Toast.makeText(AddActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
                                 }
                             });
-                    /*firebaseFirestore.collection("Posts").add(PostMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                            if (task.isComplete()){
-                                Toast.makeText(AddActivity.this,"Post was added!",Toast.LENGTH_LONG).show();
-                                sendToDate();
-                            }else{
-                                String err = task.getException().getMessage();
-                                Toast.makeText(AddActivity.this,"Error: "+err,Toast.LENGTH_LONG).show();
-                            }
 
-                        }
-                    });*/
                 }else{
                     Toast.makeText(AddActivity.this,"Please input an amount!",Toast.LENGTH_LONG).show();
                 }

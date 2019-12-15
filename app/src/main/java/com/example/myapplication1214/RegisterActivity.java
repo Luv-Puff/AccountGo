@@ -16,7 +16,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -26,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button reg_btn;
     private Button return_log_btn;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = reg_email.getText().toString();
+                final String email = reg_email.getText().toString();
                 String pwd = reg_pwd.getText().toString();
                 String pwd_vali = reg_vali_pwd.getText().toString();
                 if (!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(pwd)&&!TextUtils.isEmpty(pwd_vali)){
@@ -63,6 +67,12 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if (task.isSuccessful()){
+                                    String uid = mAuth.getUid();
+                                    Map<String,Object> UserMap = new HashMap<>();
+                                    UserMap.put("Email",email);
+                                    firebaseFirestore = FirebaseFirestore.getInstance();
+                                    firebaseFirestore.collection("Users").document(uid).set(UserMap);
+                                    //Toast.makeText(RegisterActivity.this,uid,Toast.LENGTH_LONG).show();
                                     sendToMain();
                                 }else {
                                     String err = task.getException().getMessage();
