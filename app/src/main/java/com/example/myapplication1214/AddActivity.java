@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -44,6 +45,7 @@ public class AddActivity extends AppCompatActivity {
     private String current_user_id;
     private String Add_date;
     private String Add_itemname;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class AddActivity extends AppCompatActivity {
         current_user_id = firebaseAuth.getCurrentUser().getUid();
 
         ADDbutton = findViewById(R.id.add_btn);
+        progressBar = findViewById(R.id.add_progress);
+        progressBar.setVisibility(View.INVISIBLE);
         Add_backbtn = findViewById(R.id.add_backbtn);
         Add_date  = getIntent().getStringExtra("date");
         Add_dateview = findViewById(R.id.add_dateview);
@@ -94,14 +98,15 @@ public class AddActivity extends AppCompatActivity {
         ADDbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 Addamount = findViewById(R.id.add_numtext);
                 Add_itemname= ((EditText)findViewById(R.id.add_editItem)).getText().toString();
                 if (!Addamount.getText().toString().equals("")){
                     //String id = UUID.randomUUID().toString();
                     int add = Integer.parseInt(Addamount.getText().toString());
-                    boolean chosenIE = IEspinner.getSelectedItem().toString().equals("Income");
+                    final boolean chosenIE  = IEspinner.getSelectedItem().toString().equals("Income");
                     String chosenType =Typespinner.getSelectedItem().toString();
-                    Post newpost = new Post(Add_itemname,chosenType,current_user_id,Add_date,true,add);
+                    Post newpost = new Post(Add_itemname,chosenType,current_user_id,Add_date,chosenIE,add);
 
 //                    Map<String,Object> PostMap = new HashMap<>();
 //                    PostMap.put("Id",id);
@@ -124,6 +129,7 @@ public class AddActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {
                                     Toast.makeText(AddActivity.this,"Post was added!",Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     sendToDate();
 
                                 }

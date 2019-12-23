@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".DateActivity">
 
+
     <EditText
         android:id="@+id/date_date"
         android:layout_width="wrap_content"
@@ -17,6 +18,7 @@
         android:importantForAutofill="no"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,5 +53,19 @@
             android:text="@string/addNew"
             style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
+
+    <ToggleButton
+        android:id="@+id/date_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="@string/date_switch"
+        android:textOff="@string/income"
+        android:textOn="@string/expense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/date_date"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

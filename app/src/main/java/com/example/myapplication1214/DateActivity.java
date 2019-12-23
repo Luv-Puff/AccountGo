@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ToggleButton;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,11 +31,16 @@ public class DateActivity extends AppCompatActivity {
     private String date;
     private EditText dateview;
     private Button addnew;
+    private ToggleButton IE_switch;
+    private boolean income = true;
 
     private FirebaseFirestore db ;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private PostAdapter adapter;
     private ArrayList<Post> postArrayList ;
     private RecyclerView recyclerView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +65,29 @@ public class DateActivity extends AppCompatActivity {
                 sendToAdd();
             }
         });
-        setupList();
+
+        IE_switch=findViewById(R.id.date_switch);
+        IE_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (IE_switch.isChecked()){
+
+                    setupList(false);
+
+
+                }else{
+
+                    setupList(true);
+                }
+            }
+        });
+        setupList(income);
+
 
     }
 
-    private void setupList() {
+    private void setupList(boolean isIncome) {
+        String uid = mAuth.getUid();
         recyclerView = findViewById(R.id.date_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,7 +96,8 @@ public class DateActivity extends AppCompatActivity {
         adapter = new PostAdapter(this, postArrayList);
         recyclerView.setAdapter(adapter);
         db= FirebaseFirestore.getInstance();
-        db.collection("Posts").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Posts").whereEqualTo("user_id",uid).whereEqualTo("date",date).whereEqualTo("income",isIncome)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (!queryDocumentSnapshots.isEmpty()) {
@@ -81,7 +107,6 @@ public class DateActivity extends AppCompatActivity {
                     for (DocumentSnapshot d : list) {
 
                         Post p = d.toObject(Post.class);
-                        //p.setId(d.getId());
                         postArrayList.add(p);
 
                     }
@@ -92,6 +117,7 @@ public class DateActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
 
@@ -110,26 +136,14 @@ public class DateActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //adapter.startListening();
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        //adapter.stopListening();
+
     }
 
 
 }
-//        postquery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                if (task.isSuccessful()){
-//                    for (QueryDocumentSnapshot document: task.getResult()){
-//                        Post note = document.toObject(Post.class);
-//                        mPost.add(note);
-//                    }
-//                }
-//
-//            }
-//        });
