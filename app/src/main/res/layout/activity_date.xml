@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DateActivity">
+
     <EditText
         android:id="@+id/date_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:focusable="false"
         android:hint="@string/date"
@@ -19,13 +20,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/date_recycler"
+        android:layout_width="269dp"
+        android:layout_height="342dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date_date" />
+
     <LinearLayout
         android:layout_width="269dp"
         android:layout_height="48dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_date">
+        app:layout_constraintTop_toBottomOf="@+id/date_recycler">
 
         <Button
             android:id="@+id/date_backbtn"
