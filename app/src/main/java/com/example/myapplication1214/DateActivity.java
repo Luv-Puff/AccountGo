@@ -16,6 +16,7 @@ import android.widget.ToggleButton;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,7 +36,7 @@ public class DateActivity extends AppCompatActivity {
     private boolean income = true;
 
     private FirebaseFirestore db ;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser currentUser;
     private PostAdapter adapter;
     private ArrayList<Post> postArrayList ;
     private RecyclerView recyclerView;
@@ -87,7 +88,8 @@ public class DateActivity extends AppCompatActivity {
     }
 
     private void setupList(boolean isIncome) {
-        String uid = mAuth.getUid();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseAuth.getInstance().getCurrentUser().getUid();
         recyclerView = findViewById(R.id.date_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -96,8 +98,9 @@ public class DateActivity extends AppCompatActivity {
         adapter = new PostAdapter(this, postArrayList);
         recyclerView.setAdapter(adapter);
         db= FirebaseFirestore.getInstance();
-        db.collection("Posts").whereEqualTo("user_id",uid).whereEqualTo("date",date).whereEqualTo("income",isIncome)
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("Posts").whereEqualTo("user_id",currentUser.getUid()).whereEqualTo("date",date).
+                whereEqualTo("income",isIncome).orderBy("item_name").
+                get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (!queryDocumentSnapshots.isEmpty()) {

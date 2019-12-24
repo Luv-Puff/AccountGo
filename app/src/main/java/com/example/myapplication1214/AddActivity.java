@@ -117,6 +117,7 @@ public class AddActivity extends AppCompatActivity {
 //                    PostMap.put("User_id",current_user_id);
 //                    PostMap.put("Date",Add_date);
 
+
                     firebaseFirestore.collection("Posts").add(newpost)
 //                            .addOnCompleteListener(new OnCompleteListener<Void>() {
 //                                @Override
@@ -138,11 +139,13 @@ public class AddActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(AddActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.INVISIBLE);
                                 }
                             });
 
                 }else{
                     Toast.makeText(AddActivity.this,"Please input an amount!",Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
 
             }
