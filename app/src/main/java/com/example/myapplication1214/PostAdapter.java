@@ -1,5 +1,7 @@
 package com.example.myapplication1214;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,8 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -41,26 +45,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     public int getItemCount() {
         return postList.size();
     }
-    class PostViewHolder extends RecyclerView.ViewHolder  {
+    class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView textViewItem, textViewType, textViewAmount;
 
-        public PostViewHolder(View itemView) {
+        public PostViewHolder(View itemView)  {
             super(itemView);
 
             textViewType = itemView.findViewById(R.id.text_view_type);
             textViewAmount = itemView.findViewById(R.id.text_view_amount);
             textViewItem = itemView.findViewById(R.id.text_view_item);
-            //itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
 
         }
 
-//        @Override
-//        public void onClick(View v) {
-//            Post post = productList.get(getAdapterPosition());
-//            Intent intent = new Intent(mCtx, UpdateProductActivity.class);
-//            intent.putExtra("product", product);
-//            mCtx.startActivity(intent);
-//        }
+        @Override
+        public void onClick(View v) {
+            Post post = postList.get(getAdapterPosition());
+            Intent intent = new Intent(mCtx, UpdatePostActivity.class);
+            intent.putExtra("post",post);
+            mCtx.startActivity(intent);
+        }
     }
 }

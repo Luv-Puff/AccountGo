@@ -15,7 +15,7 @@
     <string name="action_logout_text">Logout</string>
     <string name="have_a_acc">Already have an account?</string>
     <string name="passvali">Password again</string>
-    <string name="date">Date</string>
+    <string name="date">Date:</string>
     <string name="back">Back</string>
     <string name="go">Go!</string>
     <string name="addNew">New event</string>
@@ -30,4 +30,7 @@
     <string name="date_switch">switch</string>
     <string name="income">Income</string>
     <string name="expense">Expense</string>
+    <string name="updatepost">Update Post</string>
+    <string name="deletepost">Delete Post</string>
+
 </resources>

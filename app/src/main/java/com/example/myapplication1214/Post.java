@@ -1,6 +1,10 @@
 package com.example.myapplication1214;
+import com.google.firebase.firestore.Exclude;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
+    @Exclude private String id;
     private String item_name,type,user_id,date;
     private boolean income;
     private double amount;
@@ -40,6 +44,13 @@ public class Post {
 
     public double getAmount() {
         return amount;
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }

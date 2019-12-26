@@ -102,30 +102,15 @@ public class AddActivity extends AppCompatActivity {
                 Addamount = findViewById(R.id.add_numtext);
                 Add_itemname= ((EditText)findViewById(R.id.add_editItem)).getText().toString();
                 if (!Addamount.getText().toString().equals("")){
-                    //String id = UUID.randomUUID().toString();
-                    int add = Integer.parseInt(Addamount.getText().toString());
+                    Double add = Double.parseDouble(Addamount.getText().toString());
                     final boolean chosenIE  = IEspinner.getSelectedItem().toString().equals("Income");
                     String chosenType =Typespinner.getSelectedItem().toString();
                     Post newpost = new Post(Add_itemname,chosenType,current_user_id,Add_date,chosenIE,add);
 
-//                    Map<String,Object> PostMap = new HashMap<>();
-//                    PostMap.put("Id",id);
-//                    PostMap.put("Income or Expense",chosenIE);
-//                    PostMap.put("Type",chosenType);
-//                    PostMap.put("Item_name",Add_itemname);
-//                    PostMap.put("Amount",add);
-//                    PostMap.put("User_id",current_user_id);
-//                    PostMap.put("Date",Add_date);
+
 
 
                     firebaseFirestore.collection("Posts").add(newpost)
-//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    Toast.makeText(AddActivity.this,"Post was added!",Toast.LENGTH_LONG).show();
-//                                    sendToDate();
-//                                }
-//                            })
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
                                 public void onSuccess(DocumentReference documentReference) {

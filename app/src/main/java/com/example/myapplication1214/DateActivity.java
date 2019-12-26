@@ -110,6 +110,7 @@ public class DateActivity extends AppCompatActivity {
                     for (DocumentSnapshot d : list) {
 
                         Post p = d.toObject(Post.class);
+                        p.setId(d.getId());
                         postArrayList.add(p);
 
                     }
