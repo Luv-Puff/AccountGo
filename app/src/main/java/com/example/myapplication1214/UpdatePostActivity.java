@@ -171,7 +171,7 @@ public class UpdatePostActivity extends AppCompatActivity {
         update_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateProduct();
+                updatePost();
 
             }
         });
@@ -185,7 +185,7 @@ public class UpdatePostActivity extends AppCompatActivity {
                 builder.setPositiveButton("Yes Yes Yes Yes... YES!!!", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteProduct();
+                        deletePost();
                     }
                 });
 
@@ -202,7 +202,7 @@ public class UpdatePostActivity extends AppCompatActivity {
 
     }
 
-    private void deleteProduct(){
+    private void deletePost(){
         db.collection("Posts").document(post.getId()).delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -219,7 +219,7 @@ public class UpdatePostActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateProduct() {
+    private void updatePost() {
         update_date = dateview.getText().toString();
         update_isIncome = IEspinner.getSelectedItem().toString().equals("Income");
         update_type = Typespinner.getSelectedItem().toString();
