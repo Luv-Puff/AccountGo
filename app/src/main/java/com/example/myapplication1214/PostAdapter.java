@@ -1,5 +1,6 @@
 package com.example.myapplication1214;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -65,6 +66,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             Intent intent = new Intent(mCtx, UpdatePostActivity.class);
             intent.putExtra("post",post);
             mCtx.startActivity(intent);
+            ((Activity)mCtx).finish();
         }
     }
 }

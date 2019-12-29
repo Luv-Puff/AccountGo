@@ -31,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/date_date" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="269dp"
         android:layout_height="48dp"
         android:orientation="horizontal"
@@ -47,11 +48,11 @@
 
         <Button
             android:id="@+id/date_add"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/addNew"
-            style="?android:attr/buttonBarButtonStyle"/>
+            android:text="@string/addNew" />
     </LinearLayout>
 
     <ToggleButton
@@ -65,6 +66,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/date_date"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/viewPie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="600dp"
+        android:text="@string/ViewPie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

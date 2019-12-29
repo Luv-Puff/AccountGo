@@ -32,5 +32,6 @@
     <string name="expense">Expense</string>
     <string name="updatepost">Update Post</string>
     <string name="deletepost">Delete Post</string>
+    <string name="ViewPie">View pie graph</string>
 
 </resources>

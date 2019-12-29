@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -29,6 +32,7 @@ import java.util.List;
 public class DateActivity extends AppCompatActivity {
 
     private Button back;
+    private Button viewPie;
     private String date;
     private EditText dateview;
     private Button addnew;
@@ -40,6 +44,7 @@ public class DateActivity extends AppCompatActivity {
     private PostAdapter adapter;
     private ArrayList<Post> postArrayList ;
     private RecyclerView recyclerView;
+    private boolean PiePass;
 
 
 
@@ -72,24 +77,37 @@ public class DateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (IE_switch.isChecked()){
-
-                    setupList(false);
+                    income = false;
+                    setupList(income);
 
 
                 }else{
-
-                    setupList(true);
+                    income = true;
+                    setupList(income);
                 }
             }
         });
         setupList(income);
+        viewPie = findViewById(R.id.viewPie);
+        PiePass = false;
+        viewPie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (PiePass){
+                    ViewPieGraph();
+                }else{
+                    Toast.makeText(DateActivity.this,"You should not pass!",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
 
     }
 
+
     private void setupList(boolean isIncome) {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        FirebaseAuth.getInstance().getCurrentUser().getUid();
         recyclerView = findViewById(R.id.date_recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -104,6 +122,7 @@ public class DateActivity extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 if (!queryDocumentSnapshots.isEmpty()) {
+                    PiePass = true;
 
                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
 
@@ -136,6 +155,15 @@ public class DateActivity extends AppCompatActivity {
         intent.putExtra("date",date);
         startActivity(intent);
         finish();
+    }
+
+    private void ViewPieGraph(){
+        Intent intent = new Intent(DateActivity.this, PieGraphActivity.class);
+        intent.putExtra("date",date);
+        intent.putExtra("Income",income);
+        startActivity(intent);
+        finish();
+
     }
     @Override
     protected void onStart() {
