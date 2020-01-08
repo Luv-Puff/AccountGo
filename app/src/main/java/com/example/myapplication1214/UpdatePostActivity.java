@@ -45,7 +45,6 @@ public class UpdatePostActivity extends AppCompatActivity {
     private ArrayAdapter<CharSequence> IEAdapter;
     private ArrayAdapter<CharSequence> IncomeAdapter;
     private ArrayAdapter<CharSequence> ExpenseAdapter;
-    private EditText Addamount;
     private TextView dateview;
     private EditText amount,item;
     private String chosenDate;

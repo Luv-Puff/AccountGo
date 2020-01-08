@@ -107,7 +107,7 @@ public class PieChartView extends GraphicalView
                     case "Allowance":
                         amount[1] = amount[1]+i.getAmount();
                         continue;
-                    case "Award/Bonus":
+                    case "Award or Bonus":
                         amount[2] = amount[2]+i.getAmount();
                         continue;
                     default:

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -56,7 +57,6 @@ public class AddActivity extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         current_user_id = firebaseAuth.getCurrentUser().getUid();
-
         ADDbutton = findViewById(R.id.add_btn);
         progressBar = findViewById(R.id.add_progress);
         progressBar.setVisibility(View.INVISIBLE);
@@ -141,6 +141,8 @@ public class AddActivity extends AppCompatActivity {
                 sendToDate();
             }
         });
+
+
 
 
     }
